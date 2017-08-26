@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenRasta</RootNamespace>
     <AssemblyName>OpenRasta</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -179,6 +181,7 @@
     <Compile Include="Diagnostics\OperationContextErrorCollector.cs" />
     <Compile Include="Diagnostics\TraceSourceLogger.cs" />
     <Compile Include="DI\DependencyLifetime.cs" />
+    <Compile Include="DI\DependencyLifetimeManager.cs" />
     <Compile Include="DI\DependencyManager.cs" />
     <Compile Include="DI\DependencyResolutionException.cs" />
     <Compile Include="DI\DependencyResolverCore.cs" />
@@ -190,9 +193,13 @@
     <Compile Include="DI\Internal\ContextStoreExtensions.cs" />
     <Compile Include="DI\Internal\DependencyRegistration.cs" />
     <Compile Include="DI\Internal\DependencyRegistrationCollection.cs" />
+    <Compile Include="DI\Internal\EnumerableProfile.cs" />
+    <Compile Include="DI\Internal\FuncProfile.cs" />
     <Compile Include="DI\Internal\ObjectBuilder.cs" />
     <Compile Include="DI\Internal\PerRequestLifetimeManager.cs" />
     <Compile Include="DI\Internal\ResolveContext.cs" />
+    <Compile Include="DI\Internal\ResolveProfile.cs" />
+    <Compile Include="DI\Internal\SimpleProfile.cs" />
     <Compile Include="DI\Internal\SingletonLifetimeManager.cs" />
     <Compile Include="DI\Internal\TransientLifetimeManager.cs" />
     <Compile Include="DI\UnregisteredAction.cs" />
