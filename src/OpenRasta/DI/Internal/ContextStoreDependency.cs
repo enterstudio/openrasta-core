@@ -3,19 +3,23 @@ using OpenRasta.Pipeline;
 
 namespace OpenRasta.DI.Internal
 {
-    public class ContextStoreDependency
+  public class ContextStoreDependency
+  {
+    public ContextStoreDependency(DependencyRegistration registration, object instance, IContextStoreDependencyCleaner cleaner)
     {
-        public ContextStoreDependency(string key, object instance, IContextStoreDependencyCleaner cleaner)
-        {
-            if (key == null) throw new ArgumentNullException("key");
-            if (instance == null) throw new ArgumentNullException("instance");
-            Key = key;
-            Instance = instance;
-            Cleaner = cleaner;
-        }
-
-        public IContextStoreDependencyCleaner Cleaner { get; set; }
-        public object Instance { get; set; }
-        public string Key { get; set; }
+      _instance = instance ?? throw new ArgumentNullException(nameof(instance));
+      _registration = registration;
+      _cleaner = cleaner;
     }
+
+    private readonly DependencyRegistration _registration;
+    private readonly IContextStoreDependencyCleaner _cleaner;
+    private readonly object _instance;
+    public string Key => _registration.Key;
+
+    public void Cleanup()
+    {
+      _cleaner?.UnregisterTemporaryRegistration(_registration,_instance);
+    }
+  }
 }
